@@ -1,0 +1,51 @@
+version: 4
+homeassistant:
+  enabled: false
+frontend:
+  enabled: true
+  port: 8080
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://mosquitto:1883
+  user: zigbee
+  password: zigbee
+serial:
+  port: tcp://slzb-06.lan:6638
+  baudrate: 115200
+  adapter: zstack
+  disable_led: false
+advanced:
+  channel: 15
+  transmit_power: 20
+  log_level: debug
+devices:
+  '0x00158d00069b0d22':
+    friendly_name: Fridge
+  '0xbc33acfffe891dd8':
+    friendly_name: Living corner switch
+  '0xa4c13892d3c4a17f':
+    friendly_name: Living ceiling light 1
+  '0xa4c13817c6d9a349':
+    friendly_name: Living ceiling light 2
+  '0xa4c138919cb150c8':
+    friendly_name: Coffee
+  '0xa4c138185470400b':
+    friendly_name: Living heating
+  '0xa4c1384b2d454bc4':
+    friendly_name: Iron
+  '0x0c2a6ffffe53ca80':
+    friendly_name: Living standing lamp middle
+  '0xf84477fffe39ff50':
+    friendly_name: Living standing lamp top
+  '0xf84477fffe91db74':
+    friendly_name: Living standing lamp bottom
+  '0xa4c138d6b315211a':
+    friendly_name: Living light switch small balcony
+  '0x00178801099b9c0b':
+    friendly_name: Living dining table left
+  '0x001788010b049216':
+    friendly_name: Living dining table center
+  '0x00178801099bc3c0':
+    friendly_name: Living dining table right
+availability:
+  enabled: true

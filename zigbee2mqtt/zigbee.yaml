@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: zigbee2mqtt
+spec:
+  containers:
+    - name: zigbee2mqtt
+      image: docker.io/koenkk/zigbee2mqtt:latest
+      ports:
+        - containerPort: 8080
+          hostPort: 8080
+      volumeMounts:
+        - name: data
+          mountPath: /app/data
+      env:
+        - name: TZ
+          value: "Europe/Sofia"
+  volumes:
+    - name: data
+      hostPath:
+        path: /home/ha/home-automation/zigbee2mqtt
+        type: Directory

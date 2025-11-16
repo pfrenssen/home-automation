@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: home-automation
+spec:
+  containers:
+    - name: mosquitto
+      image: docker.io/eclipse-mosquitto:2
+      ports:
+        - containerPort: 1883
+          hostPort: 1883
+      volumeMounts:
+        - name: mosquitto-data
+          mountPath: /mosquitto/data
+        - name: mosquitto-config
+          mountPath: /mosquitto/config
+      command: ["mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
+    - name: zigbee2mqtt
+      image: docker.io/koenkk/zigbee2mqtt:latest
+      ports:
+        - containerPort: 8080
+          hostPort: 8080
+      volumeMounts:
+        - name: zigbee2mqtt-data
+          mountPath: /app/data
+      env:
+        - name: TZ
+          value: "Europe/Sofia"
+  volumes:
+    - name: mosquitto-data
+      hostPath:
+        path: /home/ha/home-automation/mqtt/data
+        type: DirectoryOrCreate
+    - name: mosquitto-config
+      hostPath:
+        path: /home/ha/home-automation/mqtt/config
+        type: DirectoryOrCreate
+    - name: zigbee2mqtt-data
+      hostPath:
+        path: /home/ha/home-automation/zigbee2mqtt
+        type: Directory

@@ -1,0 +1,6 @@
+# Zigbee2mqtt data.
+/zigbee2mqtt/*backup*
+/zigbee2mqtt/database.db
+/zigbee2mqtt/log/
+/zigbee2mqtt/*.log
+/zigbee2mqtt/state.json

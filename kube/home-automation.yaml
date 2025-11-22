@@ -26,6 +26,17 @@ spec:
       env:
         - name: TZ
           value: "Europe/Sofia"
+    - name: homeassistant
+      image: docker.io/homeassistant/home-assistant:stable
+      ports:
+        - containerPort: 8123
+          hostPort: 8123
+      volumeMounts:
+        - name: homeassistant-config
+          mountPath: /config
+      env:
+        - name: TZ
+          value: "Europe/Sofia"
   volumes:
     - name: mosquitto-data
       hostPath:
@@ -39,3 +50,7 @@ spec:
       hostPath:
         path: /home/ha/home-automation/zigbee2mqtt
         type: Directory
+    - name: homeassistant-config
+      hostPath:
+        path: /home/ha/home-automation/homeassistant
+        type: DirectoryOrCreate

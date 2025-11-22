@@ -1,0 +1,58 @@
+# Home Assistant Configuration
+homeassistant:
+  name: Home
+  latitude: 42.6977
+  longitude: 23.3219
+  elevation: 550
+  unit_system: metric
+  currency: BGN
+  country: BG
+  time_zone: Europe/Sofia
+  internal_url: "http://localhost:8123"
+  external_url: "http://localhost:8123"
+
+# Enable the default frontend
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Enable the web server
+http:
+
+# Enable configuration UI
+config:
+
+# Enable system health
+system_health:
+
+# Enable media source
+media_source:
+
+# Enable mobile app support
+mobile_app:
+
+# Enable my.home-assistant.io integration
+my:
+
+# Enable Bluetooth
+bluetooth:
+
+# Enable history
+history:
+
+# Enable logbook
+logbook:
+
+# Enable recording of states
+recorder:
+  purge_keep_days: 30
+
+# Enable energy monitoring
+#energy:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+scene: !include scenes.yaml
+script: !include scripts.yaml
